@@ -1,0 +1,217 @@
+{
+    "version": "0.1.0",
+    "name": "listen",
+    "instructions": [
+      {
+        "name": "initialize",
+        "accounts": [
+          {
+            "name": "allWindows",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "creator",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "allWindowsBump",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "name": "addWindow",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "programSigner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "redeemable",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "redeemableMint",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "programRedeemableHolder",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "windowList",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "programSignerBump",
+            "type": "u8"
+          },
+          {
+            "name": "windowName",
+            "type": "string"
+          },
+          {
+            "name": "allWindowsBump",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "name": "startListen",
+        "accounts": [
+          {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "programSigner",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "listener",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "windowList",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "userTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "redeemableMint",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "currentWindowTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "programSignerBump",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "allWindowsBump",
+            "type": "u8"
+          }
+        ]
+      }
+    ],
+    "accounts": [
+      {
+        "name": "WindowList",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "allWindows",
+              "type": {
+                "vec": {
+                  "defined": "Window"
+                }
+              }
+            },
+            {
+              "name": "numWindows",
+              "type": "u64"
+            }
+          ]
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "Window",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "creator",
+              "type": "publicKey"
+            },
+            {
+              "name": "windowName",
+              "type": "string"
+            },
+            {
+              "name": "windowTokenAccount",
+              "type": "publicKey"
+            },
+            {
+              "name": "windowTokenMint",
+              "type": "publicKey"
+            },
+            {
+              "name": "numTokens",
+              "type": "u64"
+            }
+          ]
+        }
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "NoTokens",
+        "msg": "No tokens"
+      }
+    ],
+    "metadata": {
+      "address": "6m1znDkNEAt3mzEpnigtxUGv2XVm1sN6UBdopWXdFK3u"
+    }
+  }
