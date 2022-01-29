@@ -18,26 +18,35 @@ import {
 import myIDL from "./idl.json"
 import addWindow from "./listenProgram/addWindowCall";
 import addWindowCall from "./listenProgram/addWindowCall";
+import addWindowLinks from "./serverProgram/addWindowLinks";
 export const addWindowAPI = async (
   wallet: anchor.Wallet,
   connection: anchor.web3.Connection,
   program:anchor.Program,
   prizeMint: anchor.web3.PublicKey,
-  userTokenAccount: anchor.web3.PublicKey
+  musicFile:any,
+  imageFile:any
 ) => {
 
  
-const sig = await addWindowCall(wallet,connection,program,prizeMint,userTokenAccount);
+// const sig = await addWindowCall(wallet,connection,program,prizeMint);
 
-const status = await awaitTransactionSignatureConfirmation(
-    sig,
-    3000,
-    connection,
-    "singleGossip",
-    false
-  );
+// const status = await awaitTransactionSignatureConfirmation(
+//     sig,
+//     3000,
+//     connection,
+//     "singleGossip",
+//     false
+//   );
 
-  console.log(status)
+//  if(!status?.err){
+    //sucess
+    console.log("sucessfully added window");
+
+    addWindowLinks(musicFile,imageFile)
+    
+
+//  }
 
 //   console.log(signature);
 };

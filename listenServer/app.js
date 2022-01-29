@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/getWindows', usersRouter);
 
 
 // catch 404 and forward to error handler
@@ -46,5 +46,7 @@ app.use('/users', usersRouter);
 // });
 
 app.use('/addWindow',indexRouter);
+app.use('/getWindows',indexRouter);
+
 
 module.exports = app;

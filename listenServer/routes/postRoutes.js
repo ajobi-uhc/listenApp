@@ -3,6 +3,22 @@ const anchor = require("@project-serum/anchor");
 const WindowController = require("../controllers/window");
 const LISTEN_PROGRAM = "6m1znDkNEAt3mzEpnigtxUGv2XVm1sN6UBdopWXdFK3u";
 const myIDL = require("../utils/idl.json");
+const multer = require('multer')
+const fs = require('fs')
+
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, callBack) => {
+      callBack(null, 'getWindows/')
+  },
+  filename: (req, file, callBack) => {
+      callBack(null, `${file.originalname}`)
+  }
+})
+let upload = multer({ dest: 'uploads/' })
+
+
 
 const connection = new anchor.web3.Connection(
   anchor.web3.clusterApiUrl("devnet"),
@@ -32,6 +48,15 @@ router.post("/addWindow", async (req, res, next) => {
 
   res.send( newWindow );
 });
+
+router.post("/getWindows",upload.single('file') ,async (req,res,next) => {
+
+
+  console.log(req.body)
+
+  res.json({})
+
+})
 
 
 

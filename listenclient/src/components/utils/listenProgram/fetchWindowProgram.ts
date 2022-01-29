@@ -19,6 +19,10 @@ export const fetchWindowProgram = async (
 
   let windowList = await newProg.account.windowList.all()
 
+
+  
+
+
   return {
       newProg,
       windowList

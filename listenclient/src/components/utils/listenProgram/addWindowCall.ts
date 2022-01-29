@@ -1,19 +1,23 @@
 import React from "react";
 import * as anchor from "@project-serum/anchor";
 import myIDL from "../idl.json";
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 //93RCT6cHRKx3Jvg11u1Hsk8mkbd6pYrWMzQ5ibETpcWN, AKL1nTizsSgeZGQTTGzvtcSYufDUeow5Jm1zdo3DkdkU
 const addWindowCall = async (
   wallet: anchor.Wallet,
   connection: anchor.web3.Connection,
   program:anchor.Program,
   prizeMint: anchor.web3.PublicKey,
-  userTokenAccount: anchor.web3.PublicKey
 ) => {
   let programId = new anchor.web3.PublicKey(
     "6m1znDkNEAt3mzEpnigtxUGv2XVm1sN6UBdopWXdFK3u"
   );
 
+  let [userTokenAccount, userTokenbump] = await anchor.web3.PublicKey.findProgramAddress(
+    [wallet.publicKey.toBuffer(), TOKEN_PROGRAM_ID.toBuffer(), prizeMint.toBuffer() ],
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  )
+  console.log("got token account", userTokenAccount.toBase58())
   let [program_signer_pubkey, signer_bump] =
     await anchor.web3.PublicKey.findProgramAddress(
       [Buffer.from("signer")],

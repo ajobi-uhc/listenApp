@@ -59,9 +59,7 @@ const Home = (props: HomeProps) => {
         program && windows && (
           <>
           <Button onClick = {refreshListenState}> Refresh listen state  </Button>
-          {windows.map((eachWindow)=>{
-            <li> {eachWindow} </li>
-          })}
+       
           <ExploreWindows
             connection={props.connection}
             program={program}
